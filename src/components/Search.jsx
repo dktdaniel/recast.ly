@@ -9,7 +9,7 @@ class Search extends React.Component {
       
     // e.persist();
     // console.log(e.target.value);
-      this.props.submit(e);
+      this.props.submit(e.target.value);
     }
   }
   

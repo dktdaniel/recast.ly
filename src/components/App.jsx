@@ -3,20 +3,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       video: window.exampleVideoData,
-      searchTerm: 'hiii'
+      currVideo: window.exampleVideoData[0]
     };
+    
   }
 
   componentDidMount() {
     this.searchVideos('surfing');
-    // console.log(this.props);
   }
   
   searchVideos(query) {
     var searchCallback = (data) => {
-      console.log(data);
       this.setState({
-        video: data
+        video: data,
+        currVideo: data[0]
       });
     };
     
@@ -30,21 +30,15 @@ class App extends React.Component {
     this.props.searchFn(options, searchCallback); 
   }
   
-  
-
   onListItemClicked(video) {
+
     this.setState({
-      video: video
+      currVideo: video
     });
   }
-  
-  
 
   handleSubmit(e) {
-    this.setState({
-      searchTerm: e.target.value
-    });
-    console.log(this.state.searchTerm);
+    this.searchVideos(e);
   }
 
   render() {
@@ -57,7 +51,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer video={this.state.video[0]}/></div>
+            <div><VideoPlayer video={this.state.currVideo}/></div>
           </div>
           <div className="col-md-5">
             <div><VideoList list={this.state.video} myFunction={this.onListItemClicked.bind(this)}/></div>

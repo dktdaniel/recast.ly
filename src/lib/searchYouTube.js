@@ -4,7 +4,7 @@ var searchYouTube = (options, callback) => {
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     data: options,
-    success: (data) => { callback(data.items); }
+    success: (data) => { callback(data.items); console.log('success'); }
   });
 };
 
