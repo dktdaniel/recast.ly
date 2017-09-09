@@ -6,7 +6,6 @@ class VideoListEntry extends React.Component {
 
 
   render() {
-  // var videoId = this.props.entry.id.videoId;
 
     return (
         <div className="video-list-entry media">

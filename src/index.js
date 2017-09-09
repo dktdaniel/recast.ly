@@ -2,5 +2,5 @@
 
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App searchFn={window.searchYouTube}/>, document.getElementById('app'));
 

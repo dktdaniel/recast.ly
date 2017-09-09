@@ -2,16 +2,49 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: window.exampleVideoData[0]
+      video: window.exampleVideoData,
+      searchTerm: 'hiii'
     };
   }
+
+  componentDidMount() {
+    this.searchVideos('surfing');
+    // console.log(this.props);
+  }
+  
+  searchVideos(query) {
+    var searchCallback = (data) => {
+      console.log(data);
+      this.setState({
+        video: data
+      });
+    };
+    
+    var options = {
+      'maxResults': 5,
+      'part': 'snippet',
+      'q': query,
+      'type': 'video',
+      'key': YOUTUBE_API_KEY
+    };
+    this.props.searchFn(options, searchCallback); 
+  }
+  
+  
 
   onListItemClicked(video) {
     this.setState({
       video: video
     });
-    console.log('video', video);
-    console.log('this state video', this.state);
+  }
+  
+  
+
+  handleSubmit(e) {
+    this.setState({
+      searchTerm: e.target.value
+    });
+    console.log(this.state.searchTerm);
   }
 
   render() {
@@ -19,15 +52,15 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><Search /></div>
+            <div><Search submit={this.handleSubmit.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer video={this.state.video}/></div>
+            <div><VideoPlayer video={this.state.video[0]}/></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList list={window.exampleVideoData} myFunction={this.onListItemClicked.bind(this)}/></div>
+            <div><VideoList list={this.state.video} myFunction={this.onListItemClicked.bind(this)}/></div>
           </div>
         </div>
       </div>
