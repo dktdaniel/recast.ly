@@ -2,19 +2,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      linkClicked: false
+      video: window.exampleVideoData[0]
     };
   }
 
-  onListItemClicked() {
+  onListItemClicked(video) {
     this.setState({
-      linkClicked: true
+      video: video
     });
-    console.log('state changed');
+    console.log('video', video);
+    console.log('this state video', this.state);
   }
 
   render() {
-    var videoIdOfClicked = '';
     return (
       <div>
         <nav className="navbar">
@@ -24,7 +24,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer/></div>
+            <div><VideoPlayer video={this.state.video}/></div>
           </div>
           <div className="col-md-5">
             <div><VideoList list={window.exampleVideoData} myFunction={this.onListItemClicked.bind(this)}/></div>

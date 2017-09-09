@@ -14,7 +14,7 @@ class VideoListEntry extends React.Component {
             <img className="media-object" src={this.props.entry.snippet.thumbnails.default.url} alt="" />
           </div>
           <div className="media-body">
-            <div className="video-list-entry-title" onClick={this.props.myFunction}>{this.props.entry.snippet.title}</div>
+            <div className="video-list-entry-title" onClick={() => { this.props.myFunction(this.props.entry); } }>{this.props.entry.snippet.title}</div>
             <div className="video-list-entry-detail">{this.props.entry.snippet.description}</div>
           </div>
         </div>

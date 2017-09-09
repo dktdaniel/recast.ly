@@ -1,7 +1,6 @@
 var VideoList = (props) => (
   <div className="video-list">
     {props.list.map(listItem => <VideoListEntry entry={listItem} myFunction={props.myFunction}/>)}
-    
   </div>
 
 
