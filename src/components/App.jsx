@@ -27,7 +27,7 @@ class App extends React.Component {
             <div><VideoPlayer/></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList list={window.exampleVideoData} appFunction={onListItemClicked}/></div>
+            <div><VideoList list={window.exampleVideoData} myFunction={this.onListItemClicked.bind(this)}/></div>
           </div>
         </div>
       </div>
